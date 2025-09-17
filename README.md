@@ -22,7 +22,7 @@ src/
 │   ├── Card/            # Card component
 │   ├── Input/           # Input component
 │   ├── Layout/          # Layout components (Navbar, Sidebar, DashboardLayout)
-│   ├── StatsCards.tsx   # Statistics cards component
+│   ├── StatsCards   # Statistics cards component
 │   └── UsersTable/      # Users table with filtering and pagination
 ├── pages/               # Page components
 │   ├── Login/           # Login page
@@ -57,24 +57,6 @@ Builds the app for production to the `build` folder.
 ### `npm test`
 Launches the test runner in interactive watch mode.
 
-
-## Technical Features
-
-- **TypeScript**: Full type safety with interfaces for all data structures
-- **SCSS Architecture**: Organized styles with variables, mixins, and modular structure
-- **React Hooks**: Modern functional components with useState, useEffect, useRef
-- **React Router**: Client-side routing with protected routes
-- **Local Storage**: Data persistence for user details and authentication state
-- **Mock API**: Simulated API calls with realistic delays and error handling
-
-## 📱 Responsive Design
-
-- Mobile-first responsive design
-- Breakpoint mixins for consistent media queries
-- Flexible grid and flexbox layouts
-- Scalable typography system
-- Touch-friendly interface elements
-
 ## Getting Started
 
 1. **Install dependencies:**
@@ -101,7 +83,7 @@ Launches the test runner in interactive watch mode.
 - **React Scripts**: Build tools and development server
 
 
-## Authntication
+## Authentication
 
 - Use any email and password to login
 - Once you logout, you will have to login again to view other pages
