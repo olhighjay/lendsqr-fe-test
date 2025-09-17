@@ -1,0 +1,81 @@
+@import 'variables';
+@import 'mixins';
+
+.btn {
+  @include button-reset;
+  @include transition;
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &--primary {
+    background-color: $primary-color;
+    color: $background-color;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  
+  &--secondary {
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    
+    &:hover {
+      background-color: $primary-color;
+      color: $background-color;
+    }
+  }
+  
+  &--large {
+    padding: $spacing-md $spacing-lg;
+    font-size: 1.1rem;
+  }
+  
+  &--small {
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.9rem;
+  }
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: $spacing-lg;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @include transition;
+  
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  &__header {
+    margin-bottom: $spacing-md;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  &__body {
+    margin-bottom: $spacing-md;
+  }
+  
+  &__footer {
+    margin-top: auto;
+  }
+}
+
+

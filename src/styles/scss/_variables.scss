@@ -1,0 +1,32 @@
+$primary-color: #61dafb;
+$primary-btn-color: #39cdcc;
+$primary-title-color: #213f7d;
+$primary-text-color: #545f7d;
+$text-color: #ffffff;
+$background-color: #282c34;
+$border-color-feint: #0000000d;
+
+$font-family-primary: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-family-mono: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+$font-family-login: 'Avenir Next', sans-serif;
+
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

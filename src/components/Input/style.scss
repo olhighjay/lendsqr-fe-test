@@ -1,0 +1,51 @@
+@import '../../styles/scss/variables';
+@import '../../styles/scss/mixins';
+
+.input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(84, 95, 125, 0.15);
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: $primary-text-color;
+  font-family: $font-family-login;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  @include transition(border-color, 0.3s, ease);
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-btn-color;
+    box-shadow: 0 0 0 3px rgba(57, 205, 204, 0.1);
+  }
+  
+  &::placeholder {
+    color: $primary-text-color;
+    opacity: 0.6;
+  }
+  
+  &:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  &--error {
+    border-color: #e74c3c;
+    
+    &:focus {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+    }
+  }
+  
+  &--success {
+    border-color: #27ae60;
+    
+    &:focus {
+      border-color: #27ae60;
+      box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+    }
+  }
+}

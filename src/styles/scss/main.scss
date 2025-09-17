@@ -1,0 +1,91 @@
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'components';
+.App {
+  text-align: center;
+  min-height: 100vh;
+  @include flex-column;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  @include transition(transform, 20s, linear);
+  
+  @media (prefers-reduced-motion: no-preference) {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: $background-color;
+  min-height: 100vh;
+  @include flex-center;
+  @include flex-column;
+  font-size: calc(10px + 2vmin);
+  color: $text-color;
+  padding: $spacing-xl;
+}
+
+.App-link {
+  color: $primary-color;
+  text-decoration: none;
+  @include transition;
+  
+  &:hover {
+    color: lighten($primary-color, 10%);
+    text-decoration: underline;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.counter-display {
+  margin: $spacing-lg 0;
+  
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: $primary-color;
+  }
+}
+
+.button-group {
+  @include flex-center;
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+}
+
+.view-toggle {
+  @include flex-center;
+  gap: $spacing-md;
+  margin: $spacing-lg 0;
+}
+
+@include responsive(md) {
+  .App-header {
+    font-size: calc(12px + 2vmin);
+  }
+  
+  .button-group {
+    gap: $spacing-lg;
+  }
+}
+
+@include responsive(lg) {
+  .App-header {
+    font-size: calc(14px + 2vmin);
+  }
+  
+  .counter-display h2 {
+    font-size: 2.5rem;
+  }
+}
