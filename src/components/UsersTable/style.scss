@@ -83,6 +83,13 @@
   padding: 16px 16px 16px 6px;
   color: $primary-text-color;
   vertical-align: middle;
+  
+  &.email-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .status-badge {

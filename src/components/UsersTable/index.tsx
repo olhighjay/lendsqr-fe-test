@@ -289,7 +289,7 @@ const UsersTable: React.FC<UsersTableProps> = ({
                                     <tr key={user.id} className="table-row">
                                         <td className="table-cell">{user.organization}</td>
                                         <td className="table-cell">{user.username}</td>
-                                        <td className="table-cell">{user.email}</td>
+                                        <td className="table-cell email-cell" title={user.email}>{user.email}</td>
                                         <td className="table-cell">{user.phoneNumber}</td>
                                         <td className="table-cell">{formatDate(user.dateJoined)}</td>
                                         <td className="table-cell">
