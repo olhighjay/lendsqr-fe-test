@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+# Lendsqr User Management Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React dashboard application for user management, built with TypeScript and SCSS. Features include user listing, detailed user profiles, filtering, pagination, and responsive design.
 
-## Available Scripts
+## Features
+
+- **User Management**: Complete user listing with pagination and filtering
+- **User Details**: Detailed user profiles with personal information, education, and guarantor details
+- **Authentication**: Login/logout functionality with protected routes
+- **Responsive Design**: Mobile-first approach with responsive layouts
+- **Filtering & Search**: Advanced filtering by organization, status, date, and more
+- **Data Management**: Local storage integration for user data persistence
+- **Modern UI**: Clean, professional interface with SCSS styling
+- **TypeScript**: Full type safety throughout the application
+
+## 📁 Project Structure
+
+```
+src/
+├── components/           # Reusable UI components
+│   ├── Button/          # Button component
+│   ├── Card/            # Card component
+│   ├── Input/           # Input component
+│   ├── Layout/          # Layout components (Navbar, Sidebar, DashboardLayout)
+│   ├── StatsCards.tsx   # Statistics cards component
+│   └── UsersTable/      # Users table with filtering and pagination
+├── pages/               # Page components
+│   ├── Login/           # Login page
+│   ├── Users/           # Users listing page
+│   └── UserDetails/     # User details page with sub-components
+├── services/            # API and storage services
+│   ├── userApi.ts       # User API service
+│   └── localStorageService.ts # Local storage service
+├── data/                # Mock data and types
+│   ├── mockUsers.json   # Mock user data
+│   └── mockUsers.ts     # User types and data processing
+├── styles/scss/         # SCSS organization
+│   ├── _variables.scss  # SCSS variables
+│   ├── _mixins.scss     # SCSS mixins
+│   ├── _base.scss       # Base styles and resets
+│   ├── _components.scss # Global component styles
+│   └── main.scss        # Main SCSS file
+└── types/               # TypeScript type definitions
+```
+
+## 🛠️ Available Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
-
-Runs the app in the development mode.\
+Runs the app in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `npm run build`
+Builds the app for production to the `build` folder.
 
 ### `npm test`
+Launches the test runner in interactive watch mode.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technical Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **TypeScript**: Full type safety with interfaces for all data structures
+- **SCSS Architecture**: Organized styles with variables, mixins, and modular structure
+- **React Hooks**: Modern functional components with useState, useEffect, useRef
+- **React Router**: Client-side routing with protected routes
+- **Local Storage**: Data persistence for user details and authentication state
+- **Mock API**: Simulated API calls with realistic delays and error handling
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📱 Responsive Design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Mobile-first responsive design
+- Breakpoint mixins for consistent media queries
+- Flexible grid and flexbox layouts
+- Scalable typography system
+- Touch-friendly interface elements
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Start development server:**
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Dependencies
 
-## Learn More
+- **React 19**: Latest React with concurrent features
+- **TypeScript**: Type safety and modern JavaScript features
+- **React Router**: Client-side routing
+- **Sass**: SCSS preprocessing
+- **React Scripts**: Build tools and development server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Authntication
+
+- Use any email and password to login
+- Once you logout, you will have to login again to view other pages
+
