@@ -4,16 +4,19 @@ import { User } from '../../../data/mockUsers';
 interface UserDetailsHeaderProps {
     user: User;
     onBack: () => void;
-    // onBlacklist: () => void;
-    // onActivate: () => void;
+    onBlacklist: () => void;
+    onActivate: () => void;
 }
 
 const UserDetailsHeader: React.FC<UserDetailsHeaderProps> = ({
     user,
     onBack,
-    // onBlacklist,
-    // onActivate
+    onBlacklist,
+    onActivate
 }) => {
+    const shouldShowBlacklist = user.status !== 'blacklisted';
+    const shouldShowActivate = user.status !== 'active';
+
     return (
         <>
             <div className="back-link" onClick={onBack}>
@@ -26,20 +29,22 @@ const UserDetailsHeader: React.FC<UserDetailsHeaderProps> = ({
                     <h1 className="page-title">User Details</h1>
                 </div>
                 <div className="header-right">
-                    <button
-                        className="btn-blacklist"
-                        // onClick={onBlacklist}
-                        disabled={user.status === 'blacklisted'}
-                    >
-                        {user.status === 'blacklisted' ? 'BLACKLISTED' : 'BLACKLIST USER'}
-                    </button>
-                    <button
-                        className="btn-activate"
-                        // onClick={onActivate}
-                        disabled={user.status === 'active'}
-                    >
-                        {user.status === 'active' ? 'ACTIVATED' : 'ACTIVATE USER'}
-                    </button>
+                    {shouldShowBlacklist && (
+                        <button
+                            className="btn-blacklist"
+                            onClick={onBlacklist}
+                        >
+                            BLACKLIST USER
+                        </button>
+                    )}
+                    {shouldShowActivate && (
+                        <button
+                            className="btn-activate"
+                            onClick={onActivate}
+                        >
+                            ACTIVATE USER
+                        </button>
+                    )}
                 </div>
             </div>
         </>

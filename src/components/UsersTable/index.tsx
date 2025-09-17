@@ -21,6 +21,7 @@ interface UsersTableProps {
     onPageChange?: (page: number) => void;
     onLimitChange?: (limit: number) => void;
     onRefresh?: () => void;
+    onUserStatusChange?: (userId: string, status: 'active' | 'inactive' | 'pending' | 'blacklisted') => void;
 }
 
 const UsersTable: React.FC<UsersTableProps> = ({
@@ -33,7 +34,8 @@ const UsersTable: React.FC<UsersTableProps> = ({
     onFilterChange,
     onPageChange,
     onLimitChange,
-    onRefresh
+    onRefresh,
+    onUserStatusChange
 }) => {
     const [showFilterPopup, setShowFilterPopup] = useState(false);
     const [showActionPopup, setShowActionPopup] = useState<string | null>(null);
@@ -155,6 +157,10 @@ const UsersTable: React.FC<UsersTableProps> = ({
     const handleActionItem = (action: string, userId: string) => {
         if (action === 'View Details' && onUserClick) {
             onUserClick(userId);
+        } else if (action === 'Blacklist User' && onUserStatusChange) {
+            onUserStatusChange(userId, 'blacklisted');
+        } else if (action === 'Activate User' && onUserStatusChange) {
+            onUserStatusChange(userId, 'active');
         }
         setShowActionPopup(null);
     };
@@ -421,22 +427,38 @@ const UsersTable: React.FC<UsersTableProps> = ({
                                     width={14} height={14} alt='view details' />
                                 View Details
                             </button>
-                            <button
-                                className="action-item"
-                                onClick={() => handleActionItem('Blacklist User', showActionPopup!)}
-                            >
-                                <img className="action-icon" src='/icons/blacklist.svg'
-                                    width={14} height={14} alt='blacklist user' />
-                                Blacklist User
-                            </button>
-                            <button
-                                className="action-item"
-                                onClick={() => handleActionItem('Activate User', showActionPopup!)}
-                            >
-                                <img className="action-icon" src='/icons/activate.svg'
-                                    width={14} height={14} alt='activate user' />
-                                Activate User
-                            </button>
+                            {(() => {
+                                const currentUser = users.find(user => user.id === showActionPopup);
+                                if (!currentUser) return null;
+
+                                const shouldShowBlacklist = currentUser.status !== 'blacklisted';
+                                const shouldShowActivate = currentUser.status !== 'active';
+
+                                return (
+                                    <>
+                                        {shouldShowBlacklist && (
+                                            <button
+                                                className="action-item"
+                                                onClick={() => handleActionItem('Blacklist User', showActionPopup!)}
+                                            >
+                                                <img className="action-icon" src='/icons/blacklist.svg'
+                                                    width={14} height={14} alt='blacklist user' />
+                                                Blacklist User
+                                            </button>
+                                        )}
+                                        {shouldShowActivate && (
+                                            <button
+                                                className="action-item"
+                                                onClick={() => handleActionItem('Activate User', showActionPopup!)}
+                                            >
+                                                <img className="action-icon" src='/icons/activate.svg'
+                                                    width={14} height={14} alt='activate user' />
+                                                Activate User
+                                            </button>
+                                        )}
+                                    </>
+                                );
+                            })()}
                         </div>
                     </div>
                 )}

@@ -263,4 +263,75 @@ describe('UserApiService', () => {
         });
     });
 
+    describe('updateUserStatus', () => {
+        it('should update user status to blacklisted (positive scenario)', async () => {
+            const result = await userApiService.updateUserStatus('user_1', 'blacklisted');
+
+            expect(result).toBeDefined();
+            expect(result?.id).toBe('user_1');
+            expect(result?.status).toBe('blacklisted');
+        });
+
+        it('should update user status to active (positive scenario)', async () => {
+            const result = await userApiService.updateUserStatus('user_2', 'active');
+
+            expect(result).toBeDefined();
+            expect(result?.id).toBe('user_2');
+            expect(result?.status).toBe('active');
+        });
+
+        it('should update user status to inactive (positive scenario)', async () => {
+            const result = await userApiService.updateUserStatus('user_1', 'inactive');
+
+            expect(result).toBeDefined();
+            expect(result?.id).toBe('user_1');
+            expect(result?.status).toBe('inactive');
+        });
+
+        it('should update user status to pending (positive scenario)', async () => {
+            const result = await userApiService.updateUserStatus('user_2', 'pending');
+
+            expect(result).toBeDefined();
+            expect(result?.id).toBe('user_2');
+            expect(result?.status).toBe('pending');
+        });
+
+        it('should return null for non-existent user (negative scenario)', async () => {
+            const result = await userApiService.updateUserStatus('nonexistent', 'active');
+
+            expect(result).toBeNull();
+        });
+
+        it('should return null for empty user ID (negative scenario)', async () => {
+            const result = await userApiService.updateUserStatus('', 'active');
+
+            expect(result).toBeNull();
+        });
+
+        it('should preserve other user properties when updating status (positive scenario)', async () => {
+            const result = await userApiService.updateUserStatus('user_1', 'blacklisted');
+
+            expect(result).toBeDefined();
+            expect(result?.id).toBe('user_1');
+            expect(result?.status).toBe('blacklisted');
+            expect(result?.username).toBe('john_doe');
+            expect(result?.email).toBe('john@example.com');
+            expect(result?.organization).toBe('Lendsqr');
+        });
+
+        it('should handle multiple status updates for same user (positive scenario)', async () => {
+            // First update
+            const result1 = await userApiService.updateUserStatus('user_1', 'inactive');
+            expect(result1?.status).toBe('inactive');
+
+            // Second update
+            const result2 = await userApiService.updateUserStatus('user_1', 'active');
+            expect(result2?.status).toBe('active');
+
+            // Third update
+            const result3 = await userApiService.updateUserStatus('user_1', 'blacklisted');
+            expect(result3?.status).toBe('blacklisted');
+        });
+    });
+
 });

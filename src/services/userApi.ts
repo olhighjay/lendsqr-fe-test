@@ -157,6 +157,22 @@ class UserApiService {
 
         return stats;
     }
+
+    async updateUserStatus(userId: string, status: 'active' | 'inactive' | 'pending' | 'blacklisted'): Promise<User | null> {
+        await this.delay(200);
+
+        const userIndex = this.users.findIndex(user => user.id === userId);
+        if (userIndex === -1) {
+            return null;
+        }
+
+        this.users[userIndex] = {
+            ...this.users[userIndex],
+            status
+        };
+
+        return this.users[userIndex];
+    }
 }
 
 export const userApiService = new UserApiService();

@@ -129,6 +129,40 @@ class LocalStorageService {
         }
     }
 
+    // Update user status
+    async updateUserStatus(userId: string, status: 'active' | 'inactive' | 'pending' | 'blacklisted'): Promise<User | null> {
+        try {
+            const users = this.getStoredUsers();
+            const userIndex = users.findIndex(u => u.id === userId);
+
+            if (userIndex === -1) {
+                return null;
+            }
+
+            const updatedUser = {
+                ...users[userIndex],
+                status
+            };
+
+            users[userIndex] = updatedUser;
+            localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
+
+            // Update user in user details as well
+            const userDetailsList = this.getStoredUserDetails();
+            const userDetails = userDetailsList.find(d => d.userId === userId);
+            if (userDetails) {
+                userDetails.user = updatedUser;
+                userDetails.lastViewed = new Date().toISOString();
+                localStorage.setItem(this.STORAGE_KEY, JSON.stringify(userDetailsList));
+            }
+
+            return updatedUser;
+        } catch (error) {
+            console.error('Failed to update user status:', error);
+            throw error;
+        }
+    }
+
     // Get recently viewed users
     async getRecentlyViewed(limit: number = 10): Promise<UserDetails[]> {
         try {

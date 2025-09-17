@@ -88,3 +88,7 @@ Launches the test runner in interactive watch mode.
 - Use any email and password to login
 - Once you logout, you will have to login again to view other pages
 
+
+## Navigation
+
+- Click on the action menu icon on any row of the table to see the corresponding user details

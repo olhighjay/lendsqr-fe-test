@@ -88,6 +88,25 @@ const Users: React.FC = () => {
         loadUsers(pagination.page, searchQuery, filters);
     };
 
+    // Handle user status change
+    const handleUserStatusChange = async (userId: string, status: 'active' | 'inactive' | 'pending' | 'blacklisted') => {
+        try {
+            // Update the user status in the API
+            await userApiService.updateUserStatus(userId, status);
+
+            // Update the local state
+            setUsers(prevUsers =>
+                prevUsers.map(user =>
+                    user.id === userId
+                        ? { ...user, status }
+                        : user
+                )
+            );
+        } catch (error) {
+            console.error('Failed to update user status:', error);
+        }
+    };
+
     return (
         <DashboardLayout>
             <div className="page-header">
@@ -106,6 +125,7 @@ const Users: React.FC = () => {
                 onPageChange={handlePageChange}
                 onLimitChange={handleLimitChange}
                 onRefresh={handleRefresh}
+                onUserStatusChange={handleUserStatusChange}
             />
         </DashboardLayout>
     );

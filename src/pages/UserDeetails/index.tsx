@@ -85,6 +85,38 @@ const UserDetails: React.FC = () => {
         navigate('/users');
     };
 
+    // Handle blacklist user
+    const handleBlacklist = async () => {
+        if (!user) return;
+
+        try {
+            const updatedUser = await localStorageService.updateUserStatus(user.id, 'blacklisted');
+            if (updatedUser) {
+                setUser(updatedUser);
+                // Also update the user in the main users list
+                await userApiService.updateUserStatus(user.id, 'blacklisted');
+            }
+        } catch (error) {
+            console.error('Failed to blacklist user:', error);
+        }
+    };
+
+    // Handle activate user
+    const handleActivate = async () => {
+        if (!user) return;
+
+        try {
+            const updatedUser = await localStorageService.updateUserStatus(user.id, 'active');
+            if (updatedUser) {
+                setUser(updatedUser);
+                // Also update the user in the main users list
+                await userApiService.updateUserStatus(user.id, 'active');
+            }
+        } catch (error) {
+            console.error('Failed to activate user:', error);
+        }
+    };
+
     if (loading) {
         return (
             <DashboardLayout>
@@ -124,8 +156,8 @@ const UserDetails: React.FC = () => {
                 <UserDetailsHeader
                     user={user}
                     onBack={handleBack}
-                    // onBlacklist={handleBlacklist}
-                    // onActivate={handleActivate}
+                    onBlacklist={handleBlacklist}
+                    onActivate={handleActivate}
                 />
 
                 <UserSummaryCard
